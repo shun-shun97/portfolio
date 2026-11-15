@@ -12,7 +12,7 @@ export const profile = {
   "email": "shunlaizaw97@gmail.com",
   "phone": "+959983777147",
   "availability": "",
-  "cvUrl": "/cv",
+  "cvUrl": "/cv/en.txt",
   "cvFileName": "Shun-Lai-Zaw-CV.txt",
   "photo": {
     "src": "/profile slz.jpeg",
@@ -300,7 +300,7 @@ const japaneseProfile: Profile = {
   ...profile,
   role: "ソフトウェア開発者・グループサブリーダー",
   location: "タイ・バンコク",
-  cvUrl: "/cv/ja",
+  cvUrl: "/cv/ja.txt",
   cvFileName: "Shun-Lai-Zaw-CV-JP.txt",
   photo: { ...profile.photo, alt: "Shun Lai Zaw（シュンレゾー）のプロフィール写真" },
   seo: {
