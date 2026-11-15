@@ -1,0 +1,10 @@
+"use client";
+import { useState } from "react";
+import { useTheme } from "next-themes";
+import { Moon, Sun, Menu, X, ArrowUpRight } from "lucide-react";
+import { usePortfolio } from "@/components/ui/LanguageProvider";
+export default function Header() {
+ const { profile, language, setLanguage } = usePortfolio();
+ const { resolvedTheme, setTheme } = useTheme(); const [open, setOpen] = useState(false);
+ return <header className="site-header"><div className="container-custom header-inner"><a href="#home" className="brand" aria-label={profile.name + ", " + profile.ui.home}>{profile.initials}<span>.</span></a><nav className="desktop-nav" aria-label={profile.ui.mainNavigation}>{profile.navigation.map(link => <a key={link.id} href={"#" + link.id}>{link.label}</a>)}</nav><div className="header-actions"><div className="language-toggle" role="group" aria-label={profile.ui.language}><button type="button" lang="en" aria-label="English" aria-pressed={language === "en"} onClick={() => setLanguage("en")}>EN</button><button type="button" lang="ja" aria-label="日本語" aria-pressed={language === "ja"} onClick={() => setLanguage("ja")}>JP</button></div><button type="button" className="icon-button theme-toggle" aria-label={profile.ui.theme} onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}><Sun className="sun-icon" size={19}/><Moon className="moon-icon" size={19}/></button><a className="header-contact" href="#contact">{profile.ui.letsTalk} <ArrowUpRight size={15}/></a><button type="button" className="icon-button menu-toggle" aria-label={open ? profile.ui.closeMenu : profile.ui.openMenu} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <X size={22}/> : <Menu size={22}/>}</button></div></div><nav id="mobile-navigation" className="mobile-nav container-custom" aria-label={profile.ui.mobileNavigation} hidden={!open} onKeyDown={e => { if (e.key === "Escape") { setOpen(false); document.querySelector<HTMLButtonElement>(".menu-toggle")?.focus(); } }}>{profile.navigation.map(link => <a key={link.id} href={"#" + link.id} onClick={() => setOpen(false)}>{link.label}</a>)}</nav></header>;
+}
